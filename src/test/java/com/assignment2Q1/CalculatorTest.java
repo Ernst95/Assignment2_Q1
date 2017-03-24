@@ -1,6 +1,7 @@
 package com.assignment2Q1;
 
 import junit.framework.Assert;
+import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.Before;
 import java.lang.*;
 
 import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
+import static junit.framework.Assert.fail;
 
 /**
  * Created by Ernst on 2017/03/24.
@@ -90,12 +92,13 @@ public class CalculatorTest{
         Assert.assertNotNull(cal);
     }
 
-    @Test
+    @Test(expected = AssertionFailedError.class)
     public void testFailing() throws Exception {
 
         Calculator cal = new Calculator();
 
-        Assert.assertFalse(2 < cal.iBiggerThan(4,2));
+        Assert.assertFalse(2 < cal.iBiggerThan(4, 2));
+        fail("Exception not thrown");
     }
 
     @Test(expected = ArithmeticException.class)
